@@ -9,7 +9,7 @@
 </template>
       
 <script>
-import {  mapGetters , mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'App',
@@ -19,16 +19,14 @@ export default {
     }
   },
   methods:{   
-
-     ...mapGetters(["getAllLocalisations"]),
-     ...mapActions(["getLocalisation"]),
+     ...mapActions({
+       local: "getLocalisation"
+       }),
   },
   created() {
-this.getAllLocalisations();
-},
- Thecreate() {
-this.getLocalisation();
-}}
+    this.local();
+  },
+}
 
 </script>
 <style>

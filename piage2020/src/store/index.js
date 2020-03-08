@@ -1,31 +1,26 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import simplejson  from "simplejson"
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  name:oui,
   state: {
     localisations: []
   },
-
   mutations: {
     LOCAL : (state, localisations) => {
+      console.log(localisations)
       state.localisations = localisations;
     }
   },
-  mounted: {
-   
-  },
   actions: {
-    getLocatisation({commit}) {
+    getLocalisation({commit}) {
+      console.log("test 2")
       Vue.axios
-      .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+      .get("http://localhost:10000")
       .then((result) => {
-      commit('LOCAL', simplejson(result.data));
-      console.log("coucou")
-      });
+        commit('LOCAL', result.data)
+      })
     },
 
   },
@@ -33,9 +28,6 @@ export default new Vuex.Store({
     getAllLocalisations : state => {
       return state.localisations
     },
-  },
-  modules: {
-
   }
 });
 

@@ -6,11 +6,13 @@ const path = require("path");
 
 const { Pool } = require('pg')
 
+// Middleware for cors
 app.use((_, res, next) => {
   res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json()); 
@@ -30,8 +32,7 @@ app.get('/', (req,res) => {
         if (error) {
           throw error
         }
-        sending = res.status(200).json(results.rows);
-        res.send(sending)
+        res.status(200).send(results.rows)
       });
 
 });
