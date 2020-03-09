@@ -5,7 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    localisations: []
+    localisations: [],
+    headers:["id_piece", "x-piece", "y_piece", "z_piece"]
   },
   mutations: {
     LOCAL : (state, localisations) => {
@@ -27,6 +28,9 @@ export default new Vuex.Store({
   getters : {
     getAllLocalisations : state => {
       return state.localisations
+    },
+    getAllHeaders : state => {
+      return state.headers
     },
   }
 });
